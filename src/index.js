@@ -40,6 +40,7 @@ const blueFood = changeState("soil")(5);
 //const hydrate = changeState("water")(1);
 //const superWater = changeState("water")(5);
 
+
 $(document).ready(function() {
   let creatureArray = [];
 
