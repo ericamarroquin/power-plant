@@ -9,21 +9,24 @@
   </head>
   <body>
     <div class="container">
-      <h1>Your Plant's Values</h1>
+      <!-- <h1>Your Plant's Values</h1>
       <h3><div id="soil-value">0</div></h3>
       
       <div class="grow-buttons">
         <button class="btn-success" id="feed">Add soil</button>
         <button class="btn-success" id="show-state">Current Stats</button>
-      </div>
+      </div> -->
 
-      <div class="new-plant-form">
-        <form>
-          <label for="name">Name:</label>
-          <input type="text" id="name">
-        </form>
-        <button class="create-new-plant">Add plant</button>
-      </div>
+      <form id="new-plant-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name">
+        <button type="submit">Add plant</button>
+      </form>
+
+      <ul>
+        <div id="all-plants"></div>
+      </ul>
+
     </div>
   </body>
 </html>

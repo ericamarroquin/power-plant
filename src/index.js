@@ -23,7 +23,7 @@ const changeState = (prop) => {
     return (state) => ({
       ...state, // returns new state object
       [prop] : (state[prop] || 0) + value
-    })
+    });
   };
 };
 
@@ -41,22 +41,32 @@ const blueFood = changeState("soil")(5);
 //const superWater = changeState("water")(5);
 
 $(document).ready(function() {
-  $('#new-plant-form').hide();
   let creatureArray = [];
-
-  $('#new-plant').click(function() {
-    $('#new-plant-form').show();
-  });
 
   $('#feed').click(function() {
     const newState = stateControl(blueFood);
-    creatureArray.push(newState);
-    creatureArray.forEach(creature => 
-      $('#soil-value').text(`Soil: ${creature.soil}`))
+    $('#soil-value').text(`Soil: ${newState.soil}`);
   });
 
   $('#show-state').click(function() {
     const currentState = stateControl();
     $('#soil-value').text(`Soil: ${currentState.soil}`);
   });
+
+  $('#new-plant-form').submit(function(event) {
+    event.preventDefault();
+    const name = $('#name').val();
+    const newPlant = newCreature(name);
+    creatureArray.push(newPlant);
+    displayAllPlants(creatureArray);
+  });
 });
+
+function displayAllPlants(array) {
+  const plantsHtml = array.map((plant) => {
+    const plantStateControl = newStoreState(plant);
+    const singlePlantState = plantStateControl();
+    return `<li> Plant Name: ${singlePlantState.name}</li>`;
+  });
+  $('#all-plants').html(plantsHtml);
+}
